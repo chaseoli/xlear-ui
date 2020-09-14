@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "xlear-ui"
+    }
+  },
+  "defaultProject": "xlear-ui",
+  "cli": {
+    "analytics": false
+  }
 }
