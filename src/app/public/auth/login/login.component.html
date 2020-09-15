@@ -1,0 +1,93 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxFill>
+  <div fxFlex></div>
+  <div style="width: 350px">
+    <form
+      [fxHide]="!hidePasswordForm"
+      [formGroup]="emailForm"
+      (ngSubmit)="onSubmitEmail()"
+    >
+      <div fxLayout="column" fxLayoutGap="10px">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            #email
+            matInput
+            name="email"
+            placeholder="name@domain.com"
+            formControlName="email"
+          />
+          <mat-error *ngIf="emailControl.invalid">{{
+            getEmailErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-checkbox [formControl]="rememberMeControl"
+            >Remember Me</mat-checkbox
+          >
+          <span fxFlex></span>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <button mat-raised-button fxFlexOrder="2" color="primary">
+              Next
+            </button>
+            <!-- <button
+              mat-button
+              [routerLink]="['/register']"
+              fxFlexOrder="1"
+              target="_blank"
+            >
+              Sign Up
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form
+      [fxHide]="hidePasswordForm"
+      [formGroup]="passwordForm"
+      (ngSubmit)="onSubmitPassword()"
+    >
+      <div fxLayout="column" fxLayoutGap="10px">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            #password
+            matInput
+            formControlName="password"
+            [type]="passwordHideText ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="passwordHideText = !passwordHideText"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="passwordHideText"
+          >
+            <mat-icon>{{
+              passwordHideText ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div
+          *ngIf="!loginAttemptInProgress; else loginAttemptBlock"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="10px"
+        >
+          <span fxFlex></span>
+          <button mat-button [routerLink]="['/reset']">Reset Password</button>
+          <button mat-raised-button color="primary" type="button" type="submit">
+            Log in
+          </button>
+        </div>
+
+        <ng-template #loginAttemptBlock>
+          <mat-spinner></mat-spinner>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+  <div fxFlex></div>
+</div>

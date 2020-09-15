@@ -1,0 +1,11 @@
+<div class="main" fxLayout="row" fxFlex>
+  <nav [fxFlex]="navWidth" *ngIf="showNav">nav</nav>
+  <!-- default to 100% to prevent page loading timing issue  -->
+  <article [fxFlex]="articleWidth || '100%'">
+    <router-outlet></router-outlet>
+    <!-- <button (click)="toggleNav()">nav</button>
+      <button (click)="toggleAside()">aside</button>
+      <div *ngFor="let i of arr">text</div> -->
+  </article>
+  <aside [fxFlex]="asideWidth" *ngIf="showAside">aside</aside>
+</div>
